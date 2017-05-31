@@ -313,9 +313,6 @@
         </b:includable>
     </b:defaultmarkup>
 </b:defaultmarkups>
-<b:include data='blog' name='google-analytics' />
-<script async='async' src='//www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js' />
-</head>
 
 <body>
     <b:class cond='data:view.isPreview' name='preview' />
