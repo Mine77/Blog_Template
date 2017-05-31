@@ -3096,11 +3096,9 @@ body.item-view #comments .comment-form h4 {
         <b:includable id='post' var='post'>
           <b:with value='&quot;post-thumb-&quot; + data:post.id' var='thumbClassName'>
             <div expr:class='&quot;post-wrapper not-hero post-&quot; + data:post.id'>
-              <b:include name='postWrapperClasses'/>
-
+              
               <!-- Standard feed thumbs always added, as they're needed for mobile view. -->
-              <b:include cond='data:post.featuredImage and data:view.isMultipleItems' name='standardPostImageStyle'/>
-              <b:include name='feedPostImage'/>
+
 
               <div class='slide'>
                 <b:include data='post' name='super.post'/>

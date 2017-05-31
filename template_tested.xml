@@ -3096,11 +3096,9 @@ body.item-view #comments .comment-form h4 {
         <b:includable id='post' var='post'>
           <b:with value='&quot;post-thumb-&quot; + data:post.id' var='thumbClassName'>
             <div expr:class='&quot;post-wrapper not-hero post-&quot; + data:post.id'>
-              <b:include name='postWrapperClasses'/>
-
+              
               <!-- Standard feed thumbs always added, as they're needed for mobile view. -->
-              <b:include cond='data:post.featuredImage and data:view.isMultipleItems' name='standardPostImageStyle'/>
-              <b:include name='feedPostImage'/>
+
 
               <div class='slide'>
                 <b:include data='post' name='super.post'/>
@@ -3288,10 +3286,6 @@ body.item-view #comments .comment-form h4 {
         </b:includable>
       </b:defaultmarkup>
     </b:defaultmarkups>
-
-    <b:if cond='data:blog.adsenseClientId and !data:widgets.AdSense.empty'>
-      <script async='async' src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'/>
-    </b:if>
     <b:include data='blog' name='google-analytics'/>
 
     <script async='async' src='//www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'/>
@@ -3305,7 +3299,6 @@ body.item-view #comments .comment-form h4 {
     <b:class cond='data:view.isLabelSearch' name='label-view'/>
     <b:class cond='data:view.isSearch and !data:view.isLabelSearch' name='search-view'/>
     <b:class name='version-1-0-2'/>
-
     <b:include name='skipNavigation'/>
     <div class='page'>
       <b:with value='data:widgets.AdSense any (w =&gt; w.sectionId == &quot;ads&quot;)' var='hasVerticalAds'>
@@ -3683,7 +3676,7 @@ body.item-view #comments .comment-form h4 {
                 </b:section>
 
                 <b:section class='main' id='page_body' name='Page Body' showaddelement='false'>
-                  <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' visible='true'>
+                  <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='2' visible='true'>
                     <b:widget-settings>
                       <b:widget-setting name='commentLabel'>评论</b:widget-setting>
                       <b:widget-setting name='showShareButtons'>false</b:widget-setting>
@@ -4137,44 +4130,6 @@ body.item-view #comments .comment-form h4 {
                   </b:widget>
                 </b:section>
               </main>
-
-              <b:section ads='true' class='vertical-ad-container' id='ads' name='Ads' showaddelement='false'>
-                <b:widget id='AdSense1' locked='true' title='' type='AdSense' visible='false'>
-                  <b:includable id='main'>
-  <div class='widget-content'>
-    <b:if cond='data:adCode'>
-      <data:adCode/>
-    <b:else/>
-      <b:include name='defaultAdUnit'/>
-    </b:if>
-  </div>
-</b:includable>
-                  <b:includable id='defaultAdUnit'>
-          <!-- Clear out style (need non-empty string) -->
-          <b:with value='&quot;/* Done in css. */&quot;' var='style'>
-            <b:include name='super.defaultAdUnit'/>
-          </b:with>
-        </b:includable>
-                </b:widget>
-                <b:widget id='AdSense2' locked='true' title='' type='AdSense' visible='false'>
-                  <b:includable id='main'>
-  <div class='widget-content'>
-    <b:if cond='data:adCode'>
-      <data:adCode/>
-    <b:else/>
-      <b:include name='defaultAdUnit'/>
-    </b:if>
-  </div>
-</b:includable>
-                  <b:includable id='defaultAdUnit'>
-          <!-- Clear out style (need non-empty string) -->
-          <b:with value='&quot;/* Done in css. */&quot;' var='style'>
-            <b:include name='super.defaultAdUnit'/>
-          </b:with>
-        </b:includable>
-                </b:widget>
-              </b:section>
-
               <aside class='sidebar-container container' role='complementary'>
                 <b:class cond='data:view.isMultipleItems' name='sidebar-invisible'/>
                 <b:if cond='data:view.isMultipleItems or data:view.isLayoutMode'>
@@ -4510,4 +4465,3 @@ body.item-view #comments .comment-form h4 {
     <b:template-script async='true' name='vegeclub' version='1.0.0'/>
   </body>
 </html>
->>>>>>> parent of c79ca51... File structure. Deleted AdSense
