@@ -151,10 +151,10 @@
 <Group description="Sidebar" selector="div.sidebar_feed">
   <Variable name="sidebar.background.color" description="Background color" type="color" default="$(body.background.color)"  value="#f7f7f7"/>
   <Variable name="sidebar.separator.color" description="Separator color" type="color" default="rgba(0, 0, 0, 0.12)"  value="rgba(0, 0, 0, 0.12)"/>
-  <Variable name="widget.title.font" description="Gadget title font" type="font" default="$(sidebarTitleFont)"  value="500 16px Ubuntu, sans-serif"/>
+  <Variable name="widget.title.font" description="Gadget title font" type="font" default="$(sidebarTitleFont)"  value="normal bold 27px Ubuntu, sans-serif"/>
   <Variable name="widget.title.color" description="Gadget title color" type="color" default="$(body.text.color)"  value="#000000"/>
   <Variable name="sidebar.icons.color" description="Sidebar icons color" type="color" default="$(keycolor)"  value="#729c0b"/>
-  <Variable name="sidebar.link.font" description="Link font" type="font" default="$(sidebarLinkFont)"  value="400 14px Merriweather, Georgia, serif"/>
+  <Variable name="sidebar.link.font" description="Link font" type="font" default="$(sidebarLinkFont)"  value="normal normal 14px Merriweather, Georgia, serif"/>
   <Variable name="sidebar.link.color" description="Link color" type="color" default="$(keycolor)"  value="#729c0b"/>
   <Variable name="sidebar.posts.title.font" description="Post title font" type="font" default="$(sidebarPostTitleFont)"  value="500 14px Ubuntu, sans-serif"/>
   <Variable name="sidebar.posts.text.font" description="Post text font" type="font" default="$(sidebarPostFont)"  value="italic 400 14px Merriweather, Georgia, serif"/>
@@ -3304,15 +3304,6 @@ body.item-view #comments .comment-form h4 {
       <b:with value='data:widgets.AdSense any (w =&gt; w.sectionId == &quot;ads&quot;)' var='hasVerticalAds'>
         <div class='page_body'>
           <b:class cond='data:hasVerticalAds' name='vertical-ads'/>
-
-          <b:if cond='data:view.isSingleItem'>
-            <b:if cond='data:widgets.Blog.first.posts.first.featuredImage'>
-              <b:include data='{                                  image: data:widgets.Blog.first.posts.first.featuredImage,                                  selector: &quot;.bg-photo&quot;                                }' name='responsiveImageStyle'/>
-              <div class='bg-photo-container'>
-                <div class='bg-photo'/>
-              </div>
-            </b:if>
-          </b:if>
           <div class='centered'>
             <b:if cond='not data:view.isSingleItem'>
               <div class='centered-top-placeholder'/>
@@ -3381,50 +3372,6 @@ body.item-view #comments .comment-form h4 {
                     </b:widget>
                   </b:section>
                 </div>
-
-                <b:if cond='data:view.isLayoutMode or data:widgets any (w =&gt; w.sectionId == &quot;search_top&quot;)'>
-                  <div class='search'>
-                    <b:class cond='data:view.isSearch and data:view.search.query' name='focused'/>
-                    <button class='search-expand touch-icon-button' expr:aria-label='data:messages.search.escaped'>
-                      <div class='search-expand-text'><data:messages.search/></div>
-                      <b:include data='{ iconClass: &quot;touch-icon search-expand-icon&quot; }' name='searchIcon'/>
-                    </button>
-                    <b:section id='search_top' name='Search (Top)' showaddelement='false'>
-                      <b:widget id='BlogSearch1' locked='true' title='Search This Blog' type='BlogSearch' visible='true'>
-                        <b:includable id='main'>
-  <b:include name='widget-title'/>
-  <b:include name='content'/>
-</b:includable>
-                        <b:includable id='content'>
-  <div class='widget-content' role='search'>
-    <b:include name='searchForm'/>
-  </div>
-</b:includable>
-                        <b:includable id='searchForm'>
-  <form expr:action='data:blog.searchUrl'>
-    <b:attr cond='not data:view.isPreview' name='target' value='_top'/>
-    <b:include name='urlParamsAsFormInput'/>
-    <div class='search-input'>
-      <input autocomplete='off' expr:aria-label='data:messages.searchThisBlog' expr:placeholder='data:messages.searchThisBlog' expr:value='data:view.isSearch ? data:view.search.query.escaped : &quot;&quot;' name='q'/>
-    </div>
-    <b:include name='searchSubmit'/>
-  </form>
-</b:includable>
-                        <b:includable id='searchSubmit'>
-          <b:if cond='data:widget.sectionId == &quot;search_top&quot;'>
-            <label class='search-submit-container'>
-              <input type='submit'/>
-              <b:include data='{ iconClass: &quot;touch-icon search-icon&quot; }' name='searchIcon'/>
-            </label>
-          <b:else/>
-            <b:include name='super.searchSubmit'/>
-          </b:if>
-        </b:includable>
-                      </b:widget>
-                    </b:section>
-                  </div>
-                </b:if>
-
                 <b:if cond='data:view.isLayoutMode                             or data:widgets any (w =&gt; w.sectionId == &quot;subscription&quot;)'>
                   <section class='subscribe-section-container'>
                     <button class='subscribe-button'><b:eval expr='data:messages.subscribe'/></button>
@@ -3676,7 +3623,7 @@ body.item-view #comments .comment-form h4 {
                 </b:section>
 
                 <b:section class='main' id='page_body' name='Page Body' showaddelement='false'>
-                  <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' visible='true'>
+                  <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='2' visible='true'>
                     <b:widget-settings>
                       <b:widget-setting name='commentLabel'>评论</b:widget-setting>
                       <b:widget-setting name='showShareButtons'>false</b:widget-setting>
@@ -4138,37 +4085,6 @@ body.item-view #comments .comment-form h4 {
                     <b:include data='{ iconClass: &quot;touch-icon sidebar-back&quot; }' name='closeIcon'/>
                   </div>
                   <b:section class='sidebar' id='sidebar_feed' name='Sidebar' preferred='yes'>
-                    <b:widget id='BlogSearch2' locked='true' title='Search This Blog' type='BlogSearch' visible='true'>
-                      <b:includable id='main'>
-  <b:include name='widget-title'/>
-  <b:include name='content'/>
-</b:includable>
-                      <b:includable id='content'>
-  <div class='widget-content' role='search'>
-    <b:include name='searchForm'/>
-  </div>
-</b:includable>
-                      <b:includable id='searchForm'>
-  <form expr:action='data:blog.searchUrl'>
-    <b:attr cond='not data:view.isPreview' name='target' value='_top'/>
-    <b:include name='urlParamsAsFormInput'/>
-    <div class='search-input'>
-      <input autocomplete='off' expr:aria-label='data:messages.searchThisBlog' expr:placeholder='data:messages.searchThisBlog' expr:value='data:view.isSearch ? data:view.search.query.escaped : &quot;&quot;' name='q'/>
-    </div>
-    <b:include name='searchSubmit'/>
-  </form>
-</b:includable>
-                      <b:includable id='searchSubmit'>
-          <b:if cond='data:widget.sectionId == &quot;search_top&quot;'>
-            <label class='search-submit-container'>
-              <input type='submit'/>
-              <b:include data='{ iconClass: &quot;touch-icon search-icon&quot; }' name='searchIcon'/>
-            </label>
-          <b:else/>
-            <b:include name='super.searchSubmit'/>
-          </b:if>
-        </b:includable>
-                    </b:widget>
                     <b:widget id='Label1' locked='false' title='Labels' type='Label' visible='true'>
                       <b:widget-settings>
                         <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
