@@ -154,7 +154,7 @@
   <Variable name="widget.title.font" description="Gadget title font" type="font" default="$(sidebarTitleFont)"  value="normal bold 27px Ubuntu, sans-serif"/>
   <Variable name="widget.title.color" description="Gadget title color" type="color" default="$(body.text.color)"  value="#000000"/>
   <Variable name="sidebar.icons.color" description="Sidebar icons color" type="color" default="$(keycolor)"  value="#729c0b"/>
-  <Variable name="sidebar.link.font" description="Link font" type="font" default="$(sidebarLinkFont)"  value="normal normal 14px Merriweather, Georgia, serif"/>
+  <Variable name="sidebar.link.font" description="Link font" type="font" default="$(sidebarLinkFont)"  value="normal normal 27px Merriweather, Georgia, serif"/>
   <Variable name="sidebar.link.color" description="Link color" type="color" default="$(keycolor)"  value="#729c0b"/>
   <Variable name="sidebar.posts.title.font" description="Post title font" type="font" default="$(sidebarPostTitleFont)"  value="500 14px Ubuntu, sans-serif"/>
   <Variable name="sidebar.posts.text.font" description="Post text font" type="font" default="$(sidebarPostFont)"  value="italic 400 14px Merriweather, Georgia, serif"/>
@@ -3410,7 +3410,7 @@ body.item-view #comments .comment-form h4 {
                     <b:section id='page_list_top' name='Page List (Top)' showaddelement='false'>
                       <b:widget id='PageList1' locked='true' title='' type='PageList' visible='false'>
                         <b:widget-settings>
-                          <b:widget-setting name='pageListJson'><![CDATA[{'home': {'href': 'https://haichaozhu.blogspot.com/', 'title': '主页', 'position': 0}}]]></b:widget-setting>
+                          <b:widget-setting name='pageListJson'><![CDATA[{'home': {'href': 'http://www.haichao.red/', 'title': '主页', 'position': 0}, '1467417985373763427': {'href': 'http://www.haichao.red/p/portfolio.html', 'title': 'Portfolio', 'position': 1}, '6239991279679435815': {'href': 'http://www.haichao.red/p/about.html', 'title': 'About', 'position': 2}}]]></b:widget-setting>
                           <b:widget-setting name='homeTitle'>主页</b:widget-setting>
                         </b:widget-settings>
                         <b:includable id='main'>
@@ -4085,6 +4085,26 @@ body.item-view #comments .comment-form h4 {
                     <b:include data='{ iconClass: &quot;touch-icon sidebar-back&quot; }' name='closeIcon'/>
                   </div>
                   <b:section class='sidebar' id='sidebar_feed' name='Sidebar' preferred='yes'>
+                    <b:widget id='LinkList1' locked='false' title='' type='LinkList' visible='true'>
+                      <b:widget-settings>
+                        <b:widget-setting name='sorting'>NONE</b:widget-setting>
+                        <b:widget-setting name='text-0'>About Me</b:widget-setting>
+                        <b:widget-setting name='link-0'>http://haichaozhu.com</b:widget-setting>
+                      </b:widget-settings>
+                      <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <b:include name='content'/>
+</b:includable>
+                      <b:includable id='content'>
+ <div class='widget-content'>
+   <ul>
+     <b:loop values='data:links' var='link'>
+       <li><a expr:href='data:link.target'><data:link.name/></a></li>
+     </b:loop>
+   </ul>
+ </div>
+</b:includable>
+                    </b:widget>
                     <b:widget id='Label1' locked='false' title='Labels' type='Label' visible='true'>
                       <b:widget-settings>
                         <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
